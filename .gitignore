@@ -1,0 +1,9 @@
+# Biblioteca proprietaria da Progress e codigo compilado
+*.pl
+*.r
+# Configuracao real e arquivos gerados em execucao
+wtcc001.json
+wtcc001lab.pf
+wtcc001_*
+results.xml
+*.log

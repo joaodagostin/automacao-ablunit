@@ -1,0 +1,4 @@
+# Parametros da AVM de testes (modelo). Use SOMENTE bancos de laboratorio.
+# O executor ja informa -b, -p, -param, -T e codepage; nao repita aqui.
+-h 10
+# -db /caminho/banco_teste -ld aliasbanco -H servidor -S porta

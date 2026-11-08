@@ -1,0 +1,15 @@
+{
+  "environment_name": "Laboratorio ABLUnit - OpenEdge 12.2",
+  "execution_enabled": false,
+  "allowed_users": [],
+  "web_origin": "",
+  "avm": "/usr/dlc/bin/_progres",
+  "dlc": "/usr/dlc",
+  "laboratory_pf": "/opt/ablunitlab/app/wtcc001lab.pf",
+  "framework_propath": "/usr/dlc/tty/ablunit.pl,/usr/dlc/tty/OpenEdge.Core.pl",
+  "timeout_seconds": 120,
+  "allowed_business_classes": [
+    "clsexemplo"
+  ],
+  "allowed_test_classes": []
+}

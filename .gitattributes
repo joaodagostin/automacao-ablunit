@@ -1,0 +1,10 @@
+# Fontes em ISO-8859-1 com CRLF: sem conversao de fim de linha nem de codificacao.
+*.p    -text
+*.cls  -text
+*.i    -text
+*.tpl  -text
+*.js   -text
+*.css  -text
+*.pf   -text
+*.json text eol=lf
+*.md   text eol=lf
