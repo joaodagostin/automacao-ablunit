@@ -26,12 +26,25 @@ A ferramenta permite que o desenvolvedor, por uma tela web, faça o seguinte:
 
 ## Como funciona
 
+```mermaid
+flowchart LR
+    U[Desenvolvedor] --> T["Tela web<br/>wtcc001c1.tpl / .js"]
+    T -- "POST vpad_exec + vjson" --> W["wtcc001c1.p<br/>sessão WebSpeed"]
+    W --> L["wtcc001ln.cls<br/>cadastros JSON, geração do teste,<br/>disparo e leitura"]
+    L -- "gera" --> G["wtcc001_g_&lt;id&gt;.cls<br/>classe de teste ABLUnit"]
+    L -- "nohup + timeout" --> A["AVM batch separada<br/>_progres -b -pf lab.pf"]
+    A --> R["wtcc001runner.p"]
+    R --> C["ABLUnitCore.p<br/>driver oficial"]
+    C --> G
+    G -- "chama o método real" --> F["Fonte anexado<br/>versão avaliada (SHA-256)"]
+    C --> X["results.xml"]
+    X --> R
+    R --> J["&lt;id&gt;_resultado.json"]
+    J --> L
+    L --> T
 ```
-Tela (tpl/js) --POST vpad_exec + vjson--> wtcc001c1.p --> wtcc001ln
-  cadastros (JSON) -> gera wtcc001_g_<id>.cls (os valores dos cenários ficam em um snapshot JSON, não no código)
-                   -> nohup + timeout -> _progres -b -pf <lab.pf> -p wtcc001runner.p -param CFG=<cfg.json>
-wtcc001runner.p --> ABLUnitCore.p --> results.xml --> LerXml() --> <id>_resultado.json --> tela / CSV
-```
+
+Os valores dos cenários ficam em um snapshot JSON da rodada, e não no código gerado.
 
 - **Fonte anexado:** durante a execução, a versão anexada é copiada para o diretório de trabalho, que fica primeiro no PROPATH da AVM de teste, e é removida ao final. Assim o código instalado nunca é alterado, e cada relatório fica associado ao SHA-256 da versão avaliada.
 - **Classificação dos resultados:**
@@ -40,6 +53,38 @@ wtcc001runner.p --> ABLUnitCore.p --> results.xml --> LerXml() --> <id>_resultad
   - nunca se aprova uma execução sem XML ou com testes ignorados.
 - **Comparação:** o texto é comparado de forma exata (`COMPARE ... "RAW"` e tamanho). Números e datas são convertidos a partir do JSON, e `?` representa o valor desconhecido.
 - **Concorrência:** um lock em arquivo permite uma execução por vez, e os cadastros têm controle de revisão.
+
+## Resultados obtidos no experimento do TCC
+
+A ferramenta foi usada para avaliar **5 rotinas** de **2 classes** de um sistema legado em ABL, com **74 casos de teste** e **36 alterações controladas** (mutações manuais), uma por execução. Os nomes reais das classes e rotinas foram omitidos.
+
+![Desfecho das alterações controladas por rotina](docs/deteccao-por-rotina.svg)
+
+| Rotina | Tipo de regra | Casos | Alterações | Detectadas | Equivalentes | Não detectadas | Taxa de detecção* |
+|---|---|---|---|---|---|---|---|
+| R1 | Normalização de chave | 9 | 7 | 6 | 1 | 0 | 100% |
+| R2 | Decisão por tipo de tabela | 7 | 8 | 6 | 2 | 0 | 100% |
+| R3 | Conversão de código (tabela completa) | 23 | 6 | 6 | 0 | 0 | 100% |
+| R4 | Classificação por amostra de cada classe | 17 | 6 | 5 | 0 | 1 | 83,3% |
+| R5 | Divisão protegida e precedência de operadores | 18 | 9 | 9 | 0 | 0 | 100% |
+| **Total** | | **74** | **36** | **32** | **3** | **1** | **97,0%** |
+
+\* Taxa = detectadas / (detectadas + não detectadas), excluindo as equivalentes. Sobre o total de 36 alterações, a proporção é de 88,9%.
+
+O que os resultados mostram:
+
+- **Classificação correta das execuções:** nenhuma alteração foi inválida e nenhuma execução da série foi inconclusiva. Problemas de ambiente encontrados na preparação, como nome de arquivo diferente da classe e esquema de banco incompatível, foram classificados como inconclusivos e não contaram como detecção.
+- **A abrangência dos casos importa mais que a quantidade:** a única alteração não detectada removeu uma linha de uma tabela de decisão que não tinha caso de teste (R4). Em R3, onde todas as entradas da tabela foram testadas, todas as alterações foram detectadas.
+- **Casos de limite e alternativos:** 11 das 32 detecções dependeram exclusivamente deles.
+- **Tempo:** entre 0,36 s e 0,59 s de testes por execução, concentrado no primeiro caso (carga da classe avaliada).
+
+Exemplo de falha de asserção registrada pela ferramenta, numa alteração que trocou `/` por `*` em uma divisão:
+
+```
+Esperado: [5] / Obtido: [20]. is not true
+```
+
+Os resultados valem para a amostra avaliada e não representam a eficácia geral do ABLUnit. As limitações estão discutidas no TCC.
 
 ## Requisitos
 

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="300" viewBox="0 0 680 300" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
+  <title>Desfecho das alteracoes controladas por rotina</title>
+  <rect width="680" height="300" fill="#ffffff"/>
+  <text x="20" y="28" font-size="15" font-weight="600" fill="#1f2328">Desfecho das 36 alterações controladas por rotina</text>
+  <!-- legenda -->
+  <rect x="20" y="44" width="12" height="12" fill="#2f6fb3"/><text x="38" y="55" fill="#1f2328">Detectadas</text>
+  <rect x="130" y="44" width="12" height="12" fill="#a8b1bb"/><text x="148" y="55" fill="#1f2328">Equivalentes</text>
+  <rect x="255" y="44" width="12" height="12" fill="#d9622b"/><text x="273" y="55" fill="#1f2328">Não detectadas</text>
+  <!-- eixo: 1 alteracao = 55 px, inicio em x=70 -->
+  <g stroke="#e4e7eb" stroke-width="1">
+    <line x1="70" y1="72" x2="70" y2="272"/><line x1="125" y1="72" x2="125" y2="272"/><line x1="180" y1="72" x2="180" y2="272"/>
+    <line x1="235" y1="72" x2="235" y2="272"/><line x1="290" y1="72" x2="290" y2="272"/><line x1="345" y1="72" x2="345" y2="272"/>
+    <line x1="400" y1="72" x2="400" y2="272"/><line x1="455" y1="72" x2="455" y2="272"/><line x1="510" y1="72" x2="510" y2="272"/>
+    <line x1="565" y1="72" x2="565" y2="272"/>
+  </g>
+  <g fill="#57606a" font-size="11" text-anchor="middle">
+    <text x="70" y="288">0</text><text x="180" y="288">2</text><text x="290" y="288">4</text>
+    <text x="400" y="288">6</text><text x="510" y="288">8</text>
+  </g>
+  <!-- R1: 6 detectadas, 1 equivalente -->
+  <text x="58" y="98" text-anchor="end" fill="#1f2328" font-weight="600">R1</text>
+  <rect x="70" y="80" width="330" height="26" fill="#2f6fb3"/><text x="235" y="98" text-anchor="middle" fill="#ffffff">6</text>
+  <rect x="400" y="80" width="55" height="26" fill="#a8b1bb"/><text x="427.5" y="98" text-anchor="middle" fill="#1f2328">1</text>
+  <text x="463" y="98" fill="#57606a">7 alterações · 100%</text>
+  <!-- R2: 6 detectadas, 2 equivalentes -->
+  <text x="58" y="138" text-anchor="end" fill="#1f2328" font-weight="600">R2</text>
+  <rect x="70" y="120" width="330" height="26" fill="#2f6fb3"/><text x="235" y="138" text-anchor="middle" fill="#ffffff">6</text>
+  <rect x="400" y="120" width="110" height="26" fill="#a8b1bb"/><text x="455" y="138" text-anchor="middle" fill="#1f2328">2</text>
+  <text x="518" y="138" fill="#57606a">8 alterações · 100%</text>
+  <!-- R3: 6 detectadas -->
+  <text x="58" y="178" text-anchor="end" fill="#1f2328" font-weight="600">R3</text>
+  <rect x="70" y="160" width="330" height="26" fill="#2f6fb3"/><text x="235" y="178" text-anchor="middle" fill="#ffffff">6</text>
+  <text x="408" y="178" fill="#57606a">6 alterações · 100%</text>
+  <!-- R4: 5 detectadas, 1 nao detectada -->
+  <text x="58" y="218" text-anchor="end" fill="#1f2328" font-weight="600">R4</text>
+  <rect x="70" y="200" width="275" height="26" fill="#2f6fb3"/><text x="207.5" y="218" text-anchor="middle" fill="#ffffff">5</text>
+  <rect x="345" y="200" width="55" height="26" fill="#d9622b"/><text x="372.5" y="218" text-anchor="middle" fill="#ffffff">1</text>
+  <text x="408" y="218" fill="#57606a">6 alterações · 83,3%</text>
+  <!-- R5: 9 detectadas -->
+  <text x="58" y="258" text-anchor="end" fill="#1f2328" font-weight="600">R5</text>
+  <rect x="70" y="240" width="495" height="26" fill="#2f6fb3"/><text x="317.5" y="258" text-anchor="middle" fill="#ffffff">9</text>
+  <text x="573" y="258" fill="#57606a">9 · 100%</text>
+</svg>
