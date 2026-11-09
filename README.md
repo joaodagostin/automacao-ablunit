@@ -11,6 +11,22 @@ A ferramenta permite que o desenvolvedor, por uma tela web, faça o seguinte:
 
 > Este repositório contém apenas o código desenvolvido para o laboratório. Não inclui fontes, regras de negócio, configurações nem dados da empresa onde o experimento foi realizado. Os caminhos de servidor e os nomes de classe que aparecem no código são genéricos (`/opt/ablunitlab/...`, `clsexemplo`).
 
+## Telas
+
+> Capturas do uso real no experimento. Nomes de classes, métodos, valores de entrada, caminhos do servidor e o usuário foram substituídos por equivalentes genéricos antes da publicação.
+
+**Cadastro de um cenário:** método da classe lido do fonte anexado, argumento e resultado esperado.
+
+![Cadastro de cenário](docs/img/cenario.png)
+
+**Resultado de uma execução:** histórico à esquerda e, à direita, o resumo (18 testes, 17 aprovados, 1 falha) e o desfecho de cada caso. O hash `85fc0171` identifica a versão do fonte avaliada.
+
+![Resultado de uma execução](docs/img/resultado.png)
+
+**Ambiente:** versão do OpenEdge, AVM, arquivo `.pf` e diretórios usados na execução batch.
+
+![Ambiente](docs/img/ambiente.png)
+
 ## Arquivos
 
 | Arquivo | Papel |
